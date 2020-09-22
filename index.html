@@ -13,28 +13,28 @@
 <body>
   <div class="wrapper">
    <header>
-     <!-- barra di ricerca -->
+     <div class="search-film">
+        <label class="search-label" for="search">
+          <button class="btn" type="button" name="button">Cerca</button>
+        </label>
+          <input id="search" name="search" type="text" placeholder="Cerca o inizia una nuova chat">
+    </div>
 
    </header>
 
    <ul id="list-films">
 
-
    </ul>
  </div>
 
 
-
-
  <script id="films-template" type="text/x-handlebars-template">
-
     <li>
-      <h3>{{title}}</h3>
-      <h4>Titolo originale{{title_original}}</h4>
-      <p>Lingua originale{{lang}}</p>
-      <p>Media voto: <stro>{{vote}}</stro></p>
+      <h3>Titolo: {{title}}</h3>
+      <h4>Titolo originale: {{title_original}}</h4>
+      <p>Lingua originale: {{lang}}</p>
+      <p>Media voto: <strong>{{vote}}</strong></p>
     </li>
-
  </script>
 
 
