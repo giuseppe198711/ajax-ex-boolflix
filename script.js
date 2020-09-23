@@ -49,22 +49,62 @@ function renderMovie(movies) {
     // var titleOriginal =
     // var lang = movies[i].original_language;
     // var vote = movies[i].vote_everage;
+    var strStar = changeVote(movies[i].vote_average);
+
+    switch (strStar) {
+      case 0:
+        strStar = "<i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+
+      case 1:
+        strStar = "<i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 2:
+        strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 3:
+        strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 4:
+        strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 5:
+      strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>";
+      break;
+    };
+
+    console.log(strStar);
+     var strUrlFlag = "img/"+movies[i].original_language+".jpg";
 
     // prepariamo il nostro context
     var context = {
       "title": movies[i].title,
       "title_original": movies[i].original_title,
-      "lang": movies[i].original_language,
-      "vote:": movies[i].vote_everage
+      "lang":,
+      "vote": strStar,
+
     };
 
     // prepariamo il nostro html
-    var html = template(movies[i]);
+    var html = template(context);
     // iniettiamo il nostro html nel tag ul
     $("#list-films").append(html);
   }
 
 }
+
+
+function changeVote(vote) {
+
+ var cambioVoto = vote / 2;
+ var risultato = Math.ceil(cambioVoto);
+
+ return risultato;
+};
+
+
+
+
 
 
 
