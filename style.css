@@ -8,3 +8,14 @@
 button {
   padding: 10px;
 }
+
+.dimension {
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+}
+
+.fa-star {
+  color: yellow;
+  filter: drop-shadow(1px 1px 0px black);
+}

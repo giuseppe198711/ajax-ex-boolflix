@@ -4,6 +4,7 @@ $(document).ready (function() {
 
     var richiesta = $("#search").val();
     ricercafilms(richiesta);
+    ricercaTelefilms(richiesta);
     // svuoto il search
     $("#search").val("");
   })
@@ -15,6 +16,7 @@ $(document).ready (function() {
       if (event.which == 13) {
         var richiesta = $("#search").val();
         ricercafilms(richiesta);
+        ricercaTelefilms(richiesta);
         // svuoto il search
         $("#search").val("");
       }
@@ -23,8 +25,6 @@ $(document).ready (function() {
 
 
 });
-
-
 
 // inizio di tutte le funzioni
 
@@ -74,14 +74,15 @@ function renderMovie(movies) {
     };
 
     console.log(strStar);
-     var strUrlFlag = "img/"+movies[i].original_language+".jpg";
+     var strUrlFlag = "img/"+movies[i].original_language+".png";
 
     // prepariamo il nostro context
     var context = {
       "title": movies[i].title,
-      "title_original": movies[i].original_title,
-      "lang":,
+      "original_title": movies[i].original_title,
+      "lang": strUrlFlag,
       "vote": strStar,
+      "poster_path": movies[i].poster_path
 
     };
 
@@ -89,10 +90,78 @@ function renderMovie(movies) {
     var html = template(context);
     // iniettiamo il nostro html nel tag ul
     $("#list-films").append(html);
+
   }
+
 
 }
 
+// per telefilms
+function renderTelefilms(movies) {
+  $("#list-telefilms").html("")
+
+
+  // console.log(movies);
+
+  var source = $("#telefilms-template").html();
+  var template = Handlebars.compile(source);
+
+  // stampare ogni film ricevuto dalla chiamata api
+  for (var i = 0; i < movies.length; i++) {
+
+    // invece di crearmi delle variabili vado direttamente a passarlo al mio
+    // oggetto context che abbiamo sotto --> var contex =
+
+    // var title = movies[i].title;
+    // var titleOriginal =
+    // var lang = movies[i].original_language;
+    // var vote = movies[i].vote_everage;
+    var strStar = changeVote(movies[i].vote_average);
+
+    switch (strStar) {
+      case 0:
+        strStar = "<i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+
+      case 1:
+        strStar = "<i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 2:
+        strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 3:
+        strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 4:
+        strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i>";
+        break;
+      case 5:
+      strStar = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>";
+      break;
+    };
+
+     var strUrlFlag = "img/"+movies[i].original_language+".png";
+     console.log(movies[i]);
+
+
+    // prepariamo il nostro context
+    var context = {
+      "name": movies[i].name,
+      "original_name": movies[i].original_name,
+      "lang": strUrlFlag,
+      "vote": strStar,
+
+    };
+
+    // prepariamo il nostro html
+    var html = template(context);
+    // iniettiamo il nostro html nel tag ul
+    $("#list-telefilms").append(html);
+
+  }
+
+
+}
 
 function changeVote(vote) {
 
@@ -101,12 +170,6 @@ function changeVote(vote) {
 
  return risultato;
 };
-
-
-
-
-
-
 
 // con questa funzione vado a richiamare dal mio api cio che ha scritto
 // l utente all'interno del search
@@ -121,6 +184,28 @@ function ricercafilms(testoUtente) {
      "method": "GET",
      "success": function(data) {
        renderMovie(data.results);
+     },
+     "error": function (err) {
+       alert("Errore!");
+
+     }
+   }
+  );
+}
+
+// con questa funzione vado a richiamare dal mio api cio che ha scritto
+// l utente all'interno del search
+function ricercaTelefilms(testoUtente) {
+  $.ajax (
+    { "url": "https://api.themoviedb.org/3/search/tv",
+    "data": {
+      "api_key": "943e6e03b1c9ee8d9498785955588f72",
+      "query": testoUtente,
+      "language": "it-IT"
+    },
+     "method": "GET",
+     "success": function(data) {
+       renderTelefilms(data.results);
      },
      "error": function (err) {
        alert("Errore!");
