@@ -150,6 +150,7 @@ function renderTelefilms(movies) {
       "original_name": movies[i].original_name,
       "lang": strUrlFlag,
       "vote": strStar,
+      "poster_path": movies[i].poster_path
 
     };
 

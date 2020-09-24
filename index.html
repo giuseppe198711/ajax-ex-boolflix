@@ -36,17 +36,19 @@
 
  <script id="films-template" type="text/x-handlebars-template">
     <li>
+      <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
       <h3>Titolo: {{title}}</h3>
       <h4>Titolo originale: {{original_title}}</h4>
       <p>Lingua originale: <img class="dimension"src="{{lang}}" alt=""></p>
       <p>Media voto: <strong>{{{vote}}}</strong></p>
-      
+
 
     </li>
  </script>
 
  <script id="telefilms-template" type="text/x-handlebars-template">
     <li>
+      <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
       <h3>Titolo: {{name}}</h3>
       <h4>Titolo originale: {{original_name}}</h4>
       <p>Lingua originale: <img class="dimension"src="{{lang}}" alt=""></p>
