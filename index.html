@@ -15,13 +15,16 @@
   <div class="wrapper">
    <header>
      <div class="search-film">
+        <img class="logo" src="img/boolflix-logo.jpg" alt="">
         <label class="search-label" for="search">
           <button class="btn" type="button" name="button">Cerca</button>
+          <input id="search" name="search" type="text" placeholder="">
         </label>
-          <input id="search" name="search" type="text" placeholder="Cerca o inizia una nuova chat">
+
     </div>
 
    </header>
+
    <h2>Lista Film</h2>
    <ul id="list-films">
 
@@ -35,24 +38,32 @@
 
 
  <script id="films-template" type="text/x-handlebars-template">
-    <li>
+    <li class="cont-img-films">
       <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
-      <h3>Titolo: {{title}}</h3>
-      <h4>Titolo originale: {{original_title}}</h4>
-      <p>Lingua originale: <img class="dimension"src="{{lang}}" alt=""></p>
-      <p>Media voto: <strong>{{{vote}}}</strong></p>
 
-
+      <div class="info-films">
+        <h3>Titolo: {{title}}</h3>
+        <h4>Titolo originale: {{original_title}}</h4>
+        <p>Lingua originale: <img class="dimension-lang"src="{{lang}}" alt=""></p>
+        <p>Media voto: <strong>{{{vote}}}</strong></p>
+      </div>
     </li>
+
  </script>
 
+
+
  <script id="telefilms-template" type="text/x-handlebars-template">
-    <li>
+    <li class="cont-img-telefilms">
       <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
-      <h3>Titolo: {{name}}</h3>
-      <h4>Titolo originale: {{original_name}}</h4>
-      <p>Lingua originale: <img class="dimension"src="{{lang}}" alt=""></p>
-      <p>Media voto: <strong>{{{vote}}}</strong></p>
+
+      <div class="info-telefilms">
+        <h3>Titolo: {{name}}</h3>
+        <h4>Titolo originale: {{original_name}}</h4>
+        <p>Lingua originale: <img class="dimension-lang"src="{{lang}}" alt=""></p>
+        <p>Media voto: <strong>{{{vote}}}</strong></p>
+      </div>
+
 
     </li>
  </script>
