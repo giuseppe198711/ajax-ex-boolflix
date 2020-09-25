@@ -39,13 +39,14 @@
 
  <script id="films-template" type="text/x-handlebars-template">
     <li class="cont-img-films">
-      <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
+      <img src="{{poster_path}}" alt="">
 
       <div class="info-films">
         <h3>Titolo: {{title}}</h3>
         <h4>Titolo originale: {{original_title}}</h4>
         <p>Lingua originale: <img class="dimension-lang"src="{{lang}}" alt=""></p>
         <p>Media voto: <strong>{{{vote}}}</strong></p>
+        <p class="text-trama">Trama: {{overview}}</p>
       </div>
     </li>
 
@@ -55,13 +56,14 @@
 
  <script id="telefilms-template" type="text/x-handlebars-template">
     <li class="cont-img-telefilms">
-      <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt="">
+      <img src="{{poster_path}}" alt="">
 
       <div class="info-telefilms">
         <h3>Titolo: {{name}}</h3>
         <h4>Titolo originale: {{original_name}}</h4>
         <p>Lingua originale: <img class="dimension-lang"src="{{lang}}" alt=""></p>
         <p>Media voto: <strong>{{{vote}}}</strong></p>
+        <p class="text-trama">Trama: {{overview}}</p>
       </div>
 
 

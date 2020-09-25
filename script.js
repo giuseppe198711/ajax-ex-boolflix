@@ -76,13 +76,20 @@ function renderMovie(movies) {
     console.log(strStar);
      var strUrlFlag = "img/"+movies[i].original_language+".png";
 
+     if (movies[i].poster_path == null) {
+       var poster = "img/no-poster.png";
+     } else {
+       var poster = "https://image.tmdb.org/t/p/w185" + movies[i].poster_path;
+     }
+
     // prepariamo il nostro context
     var context = {
       "title": movies[i].title,
       "original_title": movies[i].original_title,
       "lang": strUrlFlag,
       "vote": strStar,
-      "poster_path": movies[i].poster_path
+      "poster_path": poster,
+      "overview": movies[i].overview
 
     };
 
@@ -143,6 +150,11 @@ function renderTelefilms(movies) {
      var strUrlFlag = "img/"+movies[i].original_language+".png";
      console.log(movies[i]);
 
+    if (movies[i].poster_path == null) {
+      var poster = "img/no-poster.png";
+    } else {
+      var poster = "https://image.tmdb.org/t/p/w185" + movies[i].poster_path;
+    }
 
     // prepariamo il nostro context
     var context = {
@@ -150,7 +162,8 @@ function renderTelefilms(movies) {
       "original_name": movies[i].original_name,
       "lang": strUrlFlag,
       "vote": strStar,
-      "poster_path": movies[i].poster_path
+      "poster_path": poster,
+      "overview": movies[i].overview
 
     };
 
